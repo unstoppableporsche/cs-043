@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IMDb Movie Explorer</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">IMDb data assistant</p>
+          <h1>Ask questions about movies.</h1>
+          <p class="subhead">Explore ratings, genres, release years, votes, and runtimes from a structured IMDb SQLite database.</p>
+        </div>
+        <div class="model-pill" id="status">Checking model...</div>
+      </header>
+
+      <section class="ask-panel">
+        <form id="question-form" class="question-form">
+          <input
+            id="question-input"
+            name="question"
+            type="text"
+            autocomplete="off"
+            placeholder="Which genres have the highest average rating?"
+          />
+          <button type="submit">Ask</button>
+        </form>
+        <div id="samples" class="samples"></div>
+      </section>
+
+      <section class="answer-panel">
+        <div class="answer-card">
+          <div class="section-title">
+            <h2>Answer</h2>
+            <span id="confidence">Ready</span>
+          </div>
+          <p id="answer">Choose a sample question or ask your own.</p>
+        </div>
+
+        <section class="results-section">
+          <div class="section-title">
+            <h2>Results</h2>
+            <span id="row-count">0 rows</span>
+          </div>
+          <div id="chart" class="chart"></div>
+          <div class="table-wrap">
+            <table id="results-table"></table>
+          </div>
+        </section>
+      </section>
+
+      <section class="details-grid">
+        <details>
+          <summary>Query details</summary>
+          <pre id="sql">Generated SQL will appear here after you ask a question.</pre>
+        </details>
+
+        <details>
+          <summary>Dataset schema</summary>
+          <div id="schema" class="schema-list"></div>
+        </details>
+
+        <details>
+          <summary>SQL tables</summary>
+          <div id="table-preview" class="table-preview-list"></div>
+        </details>
+
+        <details>
+          <summary>Backend API docs</summary>
+          <div id="api-docs" class="api-docs"></div>
+        </details>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
