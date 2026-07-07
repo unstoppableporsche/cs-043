@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IMDb Movie Explorer</title>
+    <link rel="stylesheet" href="/static/styles.css?v=auth-login-2" />
+  </head>
+  <body>
+    <section class="auth-screen" id="auth-screen">
+      <div class="auth-card">
+        <p class="eyebrow">IMDb data assistant</p>
+        <h1>Sign in to continue.</h1>
+        <p class="auth-copy">Create a local demo account or sign in with an existing username. Passwords are hashed, and successful logins are recorded for the audit table.</p>
+
+        <form id="auth-form" class="auth-form">
+          <label>
+            Username
+            <input id="auth-username" name="username" type="text" autocomplete="username" placeholder="demo_user" />
+          </label>
+          <label>
+            Password
+            <input id="auth-password" name="password" type="password" autocomplete="current-password" placeholder="At least 8 characters" />
+          </label>
+          <div class="auth-actions">
+            <button type="submit" data-auth-action="login">Log In</button>
+            <button type="button" class="secondary-button" id="register-button">Create Account</button>
+          </div>
+          <p id="auth-message" class="auth-message"></p>
+        </form>
+      </div>
+    </section>
+
+    <main class="app is-hidden" id="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">IMDb data assistant</p>
+          <h1>Ask questions about movies.</h1>
+          <p class="subhead">Explore ratings, genres, release years, votes, and runtimes from a structured IMDb SQLite database.</p>
+        </div>
+        <div class="hero-actions">
+          <div class="model-pill" id="user-status">Signed in</div>
+          <div class="model-pill" id="status">Checking model...</div>
+          <button type="button" class="logout-button" id="logout-button">Log Out</button>
+        </div>
+      </header>
+
+      <nav class="tabs" aria-label="App sections">
+        <button class="tab is-active" type="button" data-tab="chat">Chat</button>
+        <button class="tab" type="button" data-tab="data">Data & Backend</button>
+      </nav>
+
+      <section class="tab-panel is-active" id="chat-panel">
+        <section class="ask-panel">
+          <form id="question-form" class="question-form">
+            <input
+              id="question-input"
+              name="question"
+              type="text"
+              autocomplete="off"
+              placeholder="Which genres have the highest average rating?"
+            />
+            <button type="submit">Ask</button>
+          </form>
+          <div id="samples" class="samples"></div>
+        </section>
+
+        <section class="answer-panel">
+          <div class="answer-card">
+            <div class="section-title">
+              <h2>Answer</h2>
+              <span id="confidence">Ready</span>
+            </div>
+            <p id="answer">Choose a sample question or ask your own.</p>
+          </div>
+
+          <section class="results-section">
+            <div class="section-title">
+              <h2>Results</h2>
+              <span id="row-count">0 rows</span>
+            </div>
+            <div id="chart" class="chart"></div>
+            <div class="table-wrap">
+              <table id="results-table"></table>
+            </div>
+          </section>
+        </section>
+      </section>
+
+      <section class="tab-panel" id="data-panel">
+        <section class="details-grid">
+          <details open>
+            <summary>Query details</summary>
+            <pre id="sql">Generated SQL will appear here after you ask a question.</pre>
+          </details>
+
+          <details open>
+            <summary>Dataset schema</summary>
+            <div id="schema" class="schema-list"></div>
+          </details>
+
+          <details>
+            <summary>SQL tables</summary>
+            <div id="table-preview" class="table-preview-list"></div>
+          </details>
+
+          <details>
+            <summary>Backend API docs</summary>
+            <div id="api-docs" class="api-docs"></div>
+          </details>
+
+          <details>
+            <summary>Login audit table</summary>
+            <div id="login-events" class="table-preview-list"></div>
+          </details>
+
+          <details>
+            <summary>Chat memory</summary>
+            <div id="chat-audit" class="table-preview-list"></div>
+          </details>
+        </section>
+      </section>
+    </main>
+
+    <script src="/static/app.js?v=auth-login-2"></script>
+  </body>
+</html>
